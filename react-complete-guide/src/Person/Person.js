@@ -5,7 +5,7 @@ const person = (props) => {
   // STATE cannot be defined here
   return (
     <div>
-      <p>I'm {props.name} & {props.age} years old!</p>
+      <p onClick={props.click}>I'm {props.name} & {props.age} years old!</p>
       <p>{props.children}</p>
     </div>
 

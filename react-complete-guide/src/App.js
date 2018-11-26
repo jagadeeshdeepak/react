@@ -20,7 +20,7 @@ class App extends Component {
     // this is how the state should be changed setState is the method
     this.setState({
       persons: [
-        {name:'Deepak', age: '31'},
+        {name:'SomeotherPerson', age: '35'},
         {name:'Deeksha', age: '26'},
         {name:'Shashi', age: '30'},
       ]
@@ -31,10 +31,26 @@ class App extends Component {
     return (
       <div className="App">
         <h1>I'm a React App</h1>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}>He loves learning new tech</Person>
+        <Person
+        name={this.state.persons[0].name}
+        age={this.state.persons[0].age}
+        click={this.switchNameHandler}>
+        He loves learning new tech
+        </Person>
+
         <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>She loves Skin Wars</Person>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>He loves doing kelsa</Person>
+
+        <Person
+        name={this.state.persons[1].name}
+        age={this.state.persons[1].age}>
+        She loves Skin Wars
+        </Person>
+
+        <Person
+        name={this.state.persons[2].name}
+        age={this.state.persons[2].age}>
+        He loves doing kelsa
+        </Person>
       </div>
     );
 
