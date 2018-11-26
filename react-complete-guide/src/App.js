@@ -14,13 +14,13 @@ class App extends Component {
     ]
   }
 
-  switchNameHandler = () => {
+  switchNameHandler = (name) => {
     //console.log('Was clicked!');
     //DONOT DO THIS: this.state.persons[0].name='Changed';
     // this is how the state should be changed setState is the method
     this.setState({
       persons: [
-        {name:'SomeotherPerson', age: '35'},
+        {name:name, age: '35'},
         {name:'Deeksha', age: '26'},
         {name:'Shashi', age: '30'},
       ]
@@ -34,11 +34,11 @@ class App extends Component {
         <Person
         name={this.state.persons[0].name}
         age={this.state.persons[0].age}
-        click={this.switchNameHandler}>
+        click={this.switchNameHandler.bind(this, 'Classic')}>
         He loves learning new tech
         </Person>
 
-        <button onClick={this.switchNameHandler}>Switch Name</button>
+        <button onClick={this.switchNameHandler.bind(this, 'Someone')}>Switch Name</button>
 
         <Person
         name={this.state.persons[1].name}
