@@ -40,7 +40,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>I'm a React App</h1>
         <Person
         name={this.state.persons[0].name}
         age={this.state.persons[0].age}
