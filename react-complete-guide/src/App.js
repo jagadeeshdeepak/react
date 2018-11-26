@@ -38,6 +38,15 @@ class App extends Component {
   }
 
   render() {
+
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     return (
       <div className="App">
         <Person
@@ -47,7 +56,9 @@ class App extends Component {
         He loves learning new tech
         </Person>
 
-        <button onClick={this.switchNameHandler.bind(this, 'Someone')}>Switch Name</button>
+        <button
+        style = {style}
+        onClick={this.switchNameHandler.bind(this, 'Someone')}>Switch Name</button>
 
         <Person
         name={this.state.persons[1].name}
