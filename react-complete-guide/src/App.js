@@ -44,6 +44,16 @@ class App extends Component {
     this.setState({ showPersons : !doesShow });
   }
 
+  deletePersonHandler = (index) => {
+    // slice copies the array, here persons const has a new array with different reference
+    // const persons = this.state.persons.slice();
+    // spread is used to split the array elements, here we are splitting and creating a new one, alternative to slice()
+    const persons = [...this.state.persons];
+    // splice 1 element using the index
+    persons.splice(index, 1);
+    // assign back the reference
+    this.setState({persons: persons})
+  }
   render() {
 
     const style = {
@@ -59,19 +69,14 @@ class App extends Component {
     if ( this.state.showPersons ) {
       persons = (
         <div>
-          <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}/>
-
-          <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind( this, 'Max' )}
-          changed={this.changeNameHandler}>My Hobby is Snooker</Person>
-
-          <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}/>
+          {
+            // map the list of persons instead of repetitive code
+            // but for some we need events and for others we dont
+            // pass an index and specify which index wants events tagged in specific class
+            this.state.persons.map((person, index) => {
+              return <Person name={person.name} age={person.age} click={() => this.deletePersonHandler(index)}/>
+            })
+          }
         </div>
       )
     }
