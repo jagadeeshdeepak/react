@@ -29,14 +29,23 @@ class App extends Component {
     });
   }
 
-  changeNameHandler = (event) => {
-    this.setState({
-      persons: [
-        {name:'Deeksha', age: '26'},
-        {name:'Deepak', age: '31'},
-        {name: event.target.value, age: '30'}
-      ]
+  changeNameHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
     });
+
+    // DONOT do this, you are mutating the reference of the object
+    // const person = this.state.persons[personIndex];
+    const person = { ...this.state.persons[personIndex] };
+    person.name = event.target.value;
+
+    // copy of the object, this wont copy the reference of prev obj
+    const persons = [...this.state.persons];
+    // update the updated person to the copy
+    persons[personIndex] = person;
+
+    // update the state with updated persons array
+    this.setState({ persons: persons });
   }
 
   togglePersonsHandler = () => {
@@ -80,7 +89,9 @@ class App extends Component {
               // event with specific index on the element
               click={() => this.deletePersonHandler(index)}
               // key property for react to track each and individual elements
-              key={person.id} />
+              key={person.id}
+              // update the state for the input field we typed
+              changed={(event) => this.changeNameHandler(event, person.id)}/>
             })
           }
         </div>
