@@ -8,9 +8,9 @@ class App extends Component {
   // if something changes inside the state, then the dom is rerendered.
   state = {
     persons: [
-      {name:'Deepak', age: '31'},
-      {name:'Deeksha', age: '26'},
-      {name:'Karthik', age: '31'},
+      {id: '1', name:'Deeksha', age: '26'},
+      {id: '2', name:'Karthik', age: '31'},
+      {id: '3', name:'Deepak', age: '31'},
     ],
     otherState: 'some other value',
     showPersons: false
@@ -47,7 +47,7 @@ class App extends Component {
   deletePersonHandler = (index) => {
     // slice copies the array, here persons const has a new array with different reference
     // const persons = this.state.persons.slice();
-    // spread is used to split the array elements, here we are splitting and creating a new one, alternative to slice()
+    // spread is used to split the array elements, here we are splitting and creating a new one, alternative to slice
     const persons = [...this.state.persons];
     // splice 1 element using the index
     persons.splice(index, 1);
@@ -74,7 +74,13 @@ class App extends Component {
             // but for some we need events and for others we dont
             // pass an index and specify which index wants events tagged in specific class
             this.state.persons.map((person, index) => {
-              return <Person name={person.name} age={person.age} click={() => this.deletePersonHandler(index)}/>
+              return <Person
+              name={person.name}
+              age={person.age}
+              // event with specific index on the element
+              click={() => this.deletePersonHandler(index)}
+              // key property for react to track each and individual elements
+              key={person.id} />
             })
           }
         </div>
