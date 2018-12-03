@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // now since we enabled css modules, we can import all styles from the css
 import classes from './App.css';
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
 
 class App extends Component {
   // this is an important property of a class
@@ -79,24 +79,12 @@ class App extends Component {
     if ( this.state.showPersons ) {
       persons = (
         <div>
-          {
-            // map the list of persons instead of repetitive code
-            // but for some we need events and for others we dont
-            // pass an index and specify which index wants events tagged in specific class
-            this.state.persons.map((person, index) => {
-              return <Person
-              name={person.name}
-              age={person.age}
-              // event with specific index on the element
-              click={() => this.deletePersonHandler(index)}
-              // key property for react to track each and individual elements
-              key={person.id}
-              // update the state for the input field we typed
-              changed={(event) => this.changeNameHandler(event, person.id)}/>
-            })
-          }
+            <Persons
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.changeNameHandler} />
         </div>
-      )
+      );
     }
 
     const assignedClasses = [];
