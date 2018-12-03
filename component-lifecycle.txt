@@ -1,0 +1,11 @@
+
+
+COMPONENT LIFECYCLE
+
+1. Calls the Constructor of a Component starting from Root.
+2. Then, calls the componentWillMount
+3. Then, calls the render method
+4. Then, calls the renderChildComponents
+5. Then, calls the componentDidMount method to close things
+
+constructor(props) --> componentWillMount() --> render() --> renderChildComponents() --> componentDidMount()

@@ -5,17 +5,32 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-  // this is an important property of a class
-  // state is a special thing which is managed within the component
-  // if something changes inside the state, then the dom is rerendered.
-  state = {
-    persons: [
-      {id: '1', name:'Deeksha', age: '26'},
-      {id: '2', name:'Karthik', age: '31'},
-      {id: '3', name:'Deepak', age: '31'},
-    ],
-    otherState: 'some other value',
-    showPersons: false
+
+  constructor(props) {
+    // necessary to call super props
+    super(props);
+    console.log('[App.js] Inside constructor', props);
+
+    // this is an important property of a class
+    // state is a special thing which is managed within the component
+    // if something changes inside the state, then the dom is rerendered.
+    this.state = {
+      persons: [
+        {id: '1', name:'Deeksha', age: '26'},
+        {id: '2', name:'Karthik', age: '31'},
+        {id: '3', name:'Deepak', age: '31'},
+      ],
+      otherState: 'some other value',
+      showPersons: false
+    }
+  }
+
+  componentWillMount() {
+    console.log('[App.js] Inside componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('[App.js] Inside componentDidMount');
   }
 
   switchNameHandler = (name) => {
@@ -65,10 +80,11 @@ class App extends Component {
     // assign back the reference
     this.setState({persons: persons})
   }
+
   render() {
+    console.log('[App.js] Inside render method');
 
     let persons = null;
-
     if ( this.state.showPersons ) {
       persons = (
         <Persons
